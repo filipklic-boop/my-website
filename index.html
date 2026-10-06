@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,6 @@
     
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -24,12 +23,12 @@
                     },
                     colors: {
                         brand: {
-                            50: '#f0f5ff',
-                            100: '#e0ebff',
-                            400: '#60a5fa',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
+                            50: '#fef2f2',
+                            100: '#ffe1e1',
+                            400: '#f87171',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
                         }
                     }
                 }
@@ -44,15 +43,18 @@
         .skill-bar {
             transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
+        /* Glassmorphic Card optimized for light/darker-white background */
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
         }
-        html:not(.dark) .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        /* Black and Red Hexagon Pattern Overlay */
+        .bg-hexagon-pattern {
+            background-color: #e2e8f0; /* Darker off-white background base */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='98' viewBox='0 0 56 98'%3E%3Cpath d='M28 0l28 16v32L28 64 0 48V16zm0 98l28-16V50L28 34 0 50v32z' fill='none' stroke='%230f172a' stroke-width='1.2' stroke-opacity='0.18'/%3E%3Cpath d='M28 34l28 16v32L28 98 0 82V50z' fill='none' stroke='%23dc2626' stroke-width='1.5' stroke-opacity='0.28'/%3E%3C/svg%3E");
+            background-attachment: fixed;
         }
         .portfolio-item {
             transition: transform 0.3s ease, opacity 0.3s ease;
@@ -64,156 +66,153 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 font-sans selection:bg-brand-500 selection:text-white">
+<body class="bg-hexagon-pattern text-slate-900 transition-colors duration-300 font-sans selection:bg-red-600 selection:text-white min-h-screen">
 
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800/60 transition-colors">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-200/80 backdrop-blur-md border-b border-slate-300/80 transition-colors">
         <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
             <a href="#hero" class="text-xl font-heading font-extrabold tracking-tight flex items-center space-x-2">
-                <span class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white text-base shadow-lg shadow-brand-500/20">AM</span>
-                <span>Alex<span class="text-brand-500">.dev</span></span>
+                <span class="w-9 h-9 rounded-xl bg-gradient-to-tr from-red-600 to-slate-900 flex items-center justify-center text-white text-base shadow-lg shadow-red-600/30">AM</span>
+                <span>test_of_valor<span class="text-red-600">.dev</span></span>
             </a>
 
             <!-- Desktop Links -->
-            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600 dark:text-slate-300">
-                <a href="#about" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">About</a>
-                <a href="#skills" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Skills</a>
-                <a href="#portfolio" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Portfolio</a>
-                <a href="#contact" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Contact</a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-800">
+                <a href="#about" class="hover:text-red-600 transition-colors">About</a>
+                <a href="#skills" class="hover:text-red-600 transition-colors">Skills</a>
+                <a href="#portfolio" class="hover:text-red-600 transition-colors">Portfolio</a>
+                <a href="#contact" class="hover:text-red-600 transition-colors">Contact</a>
             </div>
 
-            <!-- Theme Switcher & Actions -->
+            <!-- Actions -->
             <div class="flex items-center space-x-4">
-                <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" class="w-10 h-10 rounded-xl bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition">
-                    <i id="theme-icon" class="fa-solid fa-moon"></i>
-                </button>
-                <a href="#contact" class="hidden sm:inline-flex px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs transition shadow-lg shadow-brand-600/25">Get In Touch</a>
+                <a href="#contact" class="hidden sm:inline-flex px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold text-xs transition shadow-lg shadow-red-600/30">Get In Touch</a>
             </div>
         </div>
     </nav>
 
     <section id="hero" class="pt-36 pb-20 px-6 max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 min-h-[90vh]">
         <div class="space-y-6 max-w-2xl text-center md:text-left">
-            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-600 dark:text-brand-400 text-xs font-semibold">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-red-600/10 border border-red-600/20 text-red-700 text-xs font-bold">
+                <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
                 <span>Available for modern Web & App Projects</span>
             </div>
-            <h1 class="text-4xl sm:text-6xl font-heading font-extrabold tracking-tight leading-tight">
-                Crafting <span class="bg-gradient-to-r from-brand-600 via-indigo-600 to-purple-600 dark:from-brand-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">intuitive</span> digital experiences.
+            <h1 class="text-4xl sm:text-6xl font-heading font-extrabold tracking-tight leading-tight text-slate-950">
+                Crafting <span class="bg-gradient-to-r from-red-600 via-red-700 to-slate-900 bg-clip-text text-transparent">intuitive</span> digital experiences.
             </h1>
-            <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed max-w-xl">
-                Hi, I'm test_of_valor. A noob in all things IT.
+            <p class="text-slate-700 text-base sm:text-lg font-medium leading-relaxed max-w-xl">
+                Hi, I'm test_of_valor. A programmer and a game designer, and I'm dedicated to learning constantly and upgrading my skills.
             </p>
             <div class="pt-4 flex flex-wrap justify-center md:justify-start gap-4">
-                <a href="#portfolio" class="px-7 py-3.5 rounded-2xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm transition shadow-xl shadow-brand-600/25 flex items-center space-x-2">
+                <a href="#portfolio" class="px-7 py-3.5 rounded-2xl bg-red-600 hover:bg-red-700 text-white font-semibold text-sm transition shadow-xl shadow-red-600/30 flex items-center space-x-2">
                     <span>Explore My Work</span>
                     <i class="fa-solid fa-arrow-right text-xs"></i>
                 </a>
-                <a href="#contact" class="px-7 py-3.5 rounded-2xl bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-sm transition">Contact Me</a>
+                <a href="#contact" class="px-7 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm transition shadow-lg">Contact Me</a>
             </div>
         </div>
 
         <div class="relative">
-            <div class="w-64 h-64 sm:w-80 sm:h-80 rounded-3xl overflow-hidden border-2 border-slate-200 dark:border-slate-800 relative z-10 shadow-2xl">
-                <img src="my-photo.jpg" alt="test_of_valor" class="w-full h-full object-cover">
+            <div class="w-64 h-64 sm:w-80 sm:h-80 rounded-3xl overflow-hidden border-2 border-slate-900/80 relative z-10 shadow-2xl bg-slate-200">
+                <img src="photo.jpg" alt="test_of_valor" class="w-full h-full object-cover">
             </div>
-            <div class="absolute -inset-4 bg-gradient-to-tr from-brand-500 to-purple-600 rounded-3xl blur-2xl opacity-20 -z-0"></div>
+            <div class="absolute -inset-4 bg-gradient-to-tr from-red-600 to-slate-900 rounded-3xl blur-2xl opacity-30 -z-0"></div>
         </div>
     </section>
 
-    <section id="about" class="py-20 px-6 border-t border-slate-200 dark:border-slate-800/60 bg-slate-100/50 dark:bg-slate-900/30">
+    <section id="about" class="py-20 px-6 border-t border-slate-300/80 bg-slate-200/40">
         <div class="max-w-6xl mx-auto space-y-12">
             <div class="text-center max-w-2xl mx-auto space-y-3">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">About Me</h2>
-                <h3 class="text-3xl font-heading font-bold">Passionate about clean code and modern design</h3>
+                <h2 class="text-xs font-bold uppercase tracking-widest text-red-600">About Me</h2>
+                <h3 class="text-3xl font-heading font-extrabold text-slate-950">Passionate about clean code and modern design</h3>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="glass-card p-6 rounded-2xl space-y-3">
-                    <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl">
+                    <div class="w-12 h-12 rounded-xl bg-red-600/10 text-red-600 flex items-center justify-center text-xl">
                         <i class="fa-solid fa-code"></i>
                     </div>
-                    <h4 class="text-lg font-bold">Frontend Mastery</h4>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Expertise in building reactive single-page applications using React, Vue, Tailwind CSS, and TypeScript.</p>
+                    <h4 class="text-lg font-bold text-slate-900">Frontend Mastery</h4>
+                    <p class="text-sm text-slate-700 leading-relaxed font-medium">Expertise in building reactive single-page applications using React, Vue, Tailwind CSS, and TypeScript.</p>
                 </div>
                 <div class="glass-card p-6 rounded-2xl space-y-3">
-                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl">
+                    <div class="w-12 h-12 rounded-xl bg-slate-900/10 text-slate-900 flex items-center justify-center text-xl">
                         <i class="fa-solid fa-server"></i>
                     </div>
-                    <h4 class="text-lg font-bold">Backend Systems</h4>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Designing scalable REST and GraphQL APIs using Node.js, Python, PostgreSQL, and cloud servers.</p>
+                    <h4 class="text-lg font-bold text-slate-900">Backend Systems</h4>
+                    <p class="text-sm text-slate-700 leading-relaxed font-medium">Designing scalable REST and GraphQL APIs using Node.js, Python, PostgreSQL, and cloud servers.</p>
                 </div>
                 <div class="glass-card p-6 rounded-2xl space-y-3">
-                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl">
+                    <div class="w-12 h-12 rounded-xl bg-red-600/10 text-red-600 flex items-center justify-center text-xl">
                         <i class="fa-solid fa-compass-drafting"></i>
                     </div>
-                    <h4 class="text-lg font-bold">UX/UI Design</h4>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Creating accessible, high-converting interfaces through wireframing, prototyping, and user testing.</p>
+                    <h4 class="text-lg font-bold text-slate-900">UX/UI Design</h4>
+                    <p class="text-sm text-slate-700 leading-relaxed font-medium">Creating accessible, high-converting interfaces through wireframing, prototyping, and user testing.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="skills" class="py-20 px-6 border-t border-slate-200 dark:border-slate-800/60 max-w-6xl mx-auto space-y-12">
+    <section id="skills" class="py-20 px-6 border-t border-slate-300/80 max-w-6xl mx-auto space-y-12">
         <div class="text-center max-w-2xl mx-auto space-y-3">
-            <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Skills & Expertise</h2>
-            <h3 class="text-3xl font-heading font-bold">Technologies I work with daily</h3>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-red-600">Skills & Expertise</h2>
+            <h3 class="text-3xl font-heading font-extrabold text-slate-950">Technologies I work with daily</h3>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div class="space-y-2">
-                <div class="flex justify-between text-sm font-semibold">
+                <div class="flex justify-between text-sm font-bold text-slate-900">
                     <span>JavaScript / TypeScript</span>
-                    <span class="text-brand-600 dark:text-brand-400">95%</span>
+                    <span class="text-red-600">95%</span>
                 </div>
-                <div class="w-full h-3 bg-slate-200 dark:bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-300 dark:border-slate-800">
-                    <div class="skill-bar h-full bg-gradient-to-r from-brand-600 to-indigo-500 rounded-full" style="width: 95%;"></div>
+                <div class="w-full h-3 bg-slate-300 rounded-full overflow-hidden p-0.5 border border-slate-400/60">
+                    <div class="skill-bar h-full bg-gradient-to-r from-red-600 to-slate-900 rounded-full" style="width: 95%;"></div>
                 </div>
             </div>
 
             <div class="space-y-2">
-                <div class="flex justify-between text-sm font-semibold">
+                <div class="flex justify-between text-sm font-bold text-slate-900">
                     <span>React / Next.js</span>
-                    <span class="text-brand-600 dark:text-brand-400">90%</span>
+                    <span class="text-red-600">90%</span>
                 </div>
-                <div class="w-full h-3 bg-slate-200 dark:bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-300 dark:border-slate-800">
-                    <div class="skill-bar h-full bg-gradient-to-r from-brand-600 to-indigo-500 rounded-full" style="width: 90%;"></div>
+                <div class="w-full h-3 bg-slate-300 rounded-full overflow-hidden p-0.5 border border-slate-400/60">
+                    <div class="skill-bar h-full bg-gradient-to-r from-red-600 to-slate-900 rounded-full" style="width: 90%;"></div>
                 </div>
             </div>
 
             <div class="space-y-2">
-                <div class="flex justify-between text-sm font-semibold">
+                <div class="flex justify-between text-sm font-bold text-slate-900">
                     <span>Tailwind CSS / UI Components</span>
-                    <span class="text-brand-600 dark:text-brand-400">98%</span>
+                    <span class="text-red-600">98%</span>
                 </div>
-                <div class="w-full h-3 bg-slate-200 dark:bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-300 dark:border-slate-800">
-                    <div class="skill-bar h-full bg-gradient-to-r from-brand-600 to-indigo-500 rounded-full" style="width: 98%;"></div>
+                <div class="w-full h-3 bg-slate-300 rounded-full overflow-hidden p-0.5 border border-slate-400/60">
+                    <div class="skill-bar h-full bg-gradient-to-r from-red-600 to-slate-900 rounded-full" style="width: 98%;"></div>
                 </div>
             </div>
 
             <div class="space-y-2">
-                <div class="flex justify-between text-sm font-semibold">
+                <div class="flex justify-between text-sm font-bold text-slate-900">
                     <span>Node.js / Express</span>
-                    <span class="text-brand-600 dark:text-brand-400">85%</span>
+                    <span class="text-red-600">85%</span>
                 </div>
-                <div class="w-full h-3 bg-slate-200 dark:bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-300 dark:border-slate-800">
-                    <div class="skill-bar h-full bg-gradient-to-r from-brand-600 to-indigo-500 rounded-full" style="width: 85%;"></div>
+                <div class="w-full h-3 bg-slate-300 rounded-full overflow-hidden p-0.5 border border-slate-400/60">
+                    <div class="skill-bar h-full bg-gradient-to-r from-red-600 to-slate-900 rounded-full" style="width: 85%;"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="portfolio" class="py-20 px-6 border-t border-slate-200 dark:border-slate-800/60 bg-slate-100/50 dark:bg-slate-900/30">
+    <section id="portfolio" class="py-20 px-6 border-t border-slate-300/80 bg-slate-200/40">
         <div class="max-w-6xl mx-auto space-y-10">
             <div class="text-center max-w-2xl mx-auto space-y-3">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Featured Work</h2>
-                <h3 class="text-3xl font-heading font-bold">Recent Projects & Case Studies</h3>
+                <h2 class="text-xs font-bold uppercase tracking-widest text-red-600">Featured Work</h2>
+                <h3 class="text-3xl font-heading font-extrabold text-slate-950">Recent Projects & Case Studies</h3>
             </div>
 
             <!-- Portfolio Filter Tabs -->
-            <div class="flex justify-center space-x-2 border-b border-slate-300 dark:border-slate-800 pb-4 max-w-md mx-auto">
-                <button onclick="filterPortfolio('all', this)" class="portfolio-btn px-4 py-2 rounded-xl text-xs font-semibold bg-brand-600 text-white transition">All</button>
-                <button onclick="filterPortfolio('web', this)" class="portfolio-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">Web Apps</button>
-                <button onclick="filterPortfolio('design', this)" class="portfolio-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">UI/UX Design</button>
+            <div class="flex justify-center space-x-2 border-b border-slate-300 pb-4 max-w-md mx-auto">
+                <button onclick="filterPortfolio('all', this)" class="portfolio-btn px-4 py-2 rounded-xl text-xs font-semibold bg-red-600 text-white transition shadow-md">All</button>
+                <button onclick="filterPortfolio('web', this)" class="portfolio-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:text-slate-950 transition">Web Apps</button>
+                <button onclick="filterPortfolio('design', this)" class="portfolio-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:text-slate-950 transition">UI/UX Design</button>
             </div>
 
             <!-- Portfolio Items Grid -->
@@ -224,9 +223,9 @@
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Fintech Dashboard" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="space-y-2">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">Web App</span>
-                        <h4 class="text-lg font-bold">Analytics Platform</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400">Real-time financial telemetry dashboard with interactive charts and export functions.</p>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-red-600">Web App</span>
+                        <h4 class="text-lg font-bold text-slate-900">Analytics Platform</h4>
+                        <p class="text-xs text-slate-700 font-medium">Real-time financial telemetry dashboard with interactive charts and export functions.</p>
                     </div>
                 </div>
 
@@ -236,9 +235,9 @@
                         <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="AI Generator UI" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="space-y-2">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400">UI/UX Design</span>
-                        <h4 class="text-lg font-bold">Generative AI Suite</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400">Minimalist creative UI design kit with customized dark mode components.</p>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-900">UI/UX Design</span>
+                        <h4 class="text-lg font-bold text-slate-900">Generative AI Suite</h4>
+                        <p class="text-xs text-slate-700 font-medium">Minimalist creative UI design kit with customized dark mode components.</p>
                     </div>
                 </div>
 
@@ -248,74 +247,61 @@
                         <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" alt="E-Commerce Storefront" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                     <div class="space-y-2">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">Web App</span>
-                        <h4 class="text-lg font-bold">Headless E-Commerce</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-400">High-performance digital store built using Next.js and Stripe integration.</p>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-red-600">Web App</span>
+                        <h4 class="text-lg font-bold text-slate-900">Headless E-Commerce</h4>
+                        <p class="text-xs text-slate-700 font-medium">High-performance digital store built using Next.js and Stripe integration.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-20 px-6 border-t border-slate-200 dark:border-slate-800/60 max-w-4xl mx-auto space-y-10">
+    <section id="contact" class="py-20 px-6 border-t border-slate-300/80 max-w-4xl mx-auto space-y-10">
         <div class="text-center space-y-3">
-            <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400">Get In Touch</h2>
-            <h3 class="text-3xl font-heading font-bold">Let's build something awesome together</h3>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-red-600">Get In Touch</h2>
+            <h3 class="text-3xl font-heading font-extrabold text-slate-950">Let's build something awesome together</h3>
         </div>
 
         <form action="https://formspree.io/f/xljgeydj" method="POST" class="space-y-6 max-w-xl mx-auto glass-card p-8 rounded-2xl">
           <div class="space-y-2">
-            <label for="name" class="text-xs font-semibold text-slate-700 dark:text-slate-300">Name</label>
-            <input type="text" id="name" name="name" required placeholder="Your Name" class="w-full px-4 py-3 rounded-xl bg-slate-200/60 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:border-brand-500 transition text-sm" />
+            <label for="name" class="text-xs font-bold text-slate-800">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your Name" class="w-full px-4 py-3 rounded-xl bg-slate-100/90 border border-slate-300 text-slate-900 placeholder-slate-500 focus:outline-none focus:border-red-600 transition text-sm font-medium" />
           </div>
 
           <div class="space-y-2">
-            <label for="email" class="text-xs font-semibold text-slate-700 dark:text-slate-300">Email</label>
-            <input type="email" id="email" name="email" required placeholder="your.email@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-200/60 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:border-brand-500 transition text-sm" />
+            <label for="email" class="text-xs font-bold text-slate-800">Email</label>
+            <input type="email" id="email" name="email" required placeholder="your.email@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-100/90 border border-slate-300 text-slate-900 placeholder-slate-500 focus:outline-none focus:border-red-600 transition text-sm font-medium" />
           </div>
 
           <div class="space-y-2">
-            <label for="message" class="text-xs font-semibold text-slate-700 dark:text-slate-300">Message</label>
-            <textarea id="message" name="message" rows="4" required placeholder="How can I help you?" class="w-full px-4 py-3 rounded-xl bg-slate-200/60 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:border-brand-500 transition text-sm resize-none"></textarea>
+            <label for="message" class="text-xs font-bold text-slate-800">Message</label>
+            <textarea id="message" name="message" rows="4" required placeholder="How can I help you?" class="w-full px-4 py-3 rounded-xl bg-slate-100/90 border border-slate-300 text-slate-900 placeholder-slate-500 focus:outline-none focus:border-red-600 transition text-sm font-medium resize-none"></textarea>
           </div>
 
-          <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm transition shadow-lg shadow-brand-600/25">Send Message</button>
+          <button type="submit" class="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold text-sm transition shadow-lg shadow-red-600/30">Send Message</button>
         </form>
     </section>
 
-    <footer class="py-8 border-t border-slate-200 dark:border-slate-800/60 text-center text-xs text-slate-500 space-y-4">
-        <div class="flex justify-center space-x-6 text-base text-slate-600 dark:text-slate-400">
-            <a href="#" class="hover:text-brand-600 dark:hover:text-brand-400"><i class="fa-brands fa-github"></i></a>
-            <a href="#" class="hover:text-brand-600 dark:hover:text-brand-400"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#" class="hover:text-brand-600 dark:hover:text-brand-400"><i class="fa-brands fa-linkedin"></i></a>
+    <footer class="py-8 border-t border-slate-300/80 text-center text-xs text-slate-700 space-y-4">
+        <div class="flex justify-center space-x-6 text-base text-slate-800">
+            <a href="#" class="hover:text-red-600"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="hover:text-red-600"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="hover:text-red-600"><i class="fa-brands fa-linkedin"></i></a>
         </div>
         <p>© 2026 test_of_valor. Built with some magic and uprising noobery.</p>
     </footer>
 
     <script>
-        function toggleTheme() {
-            const html = document.documentElement;
-            const icon = document.getElementById('theme-icon');
-            
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                icon.className = 'fa-solid fa-sun text-amber-500';
-            } else {
-                html.classList.add('dark');
-                icon.className = 'fa-solid fa-moon text-slate-300';
-            }
-        }
-
         function filterPortfolio(category, btnElement) {
             const items = document.querySelectorAll('.portfolio-item');
             const btns = document.querySelectorAll('.portfolio-btn');
 
             btns.forEach(btn => {
-                btn.className = "portfolio-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition";
+                btn.className = "portfolio-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-700 hover:text-slate-950 transition";
             });
 
             if (btnElement) {
-                btnElement.className = "portfolio-btn px-4 py-2 rounded-xl text-xs font-semibold bg-brand-600 text-white transition";
+                btnElement.className = "portfolio-btn px-4 py-2 rounded-xl text-xs font-semibold bg-red-600 text-white transition shadow-md";
             }
 
             items.forEach(item => {
